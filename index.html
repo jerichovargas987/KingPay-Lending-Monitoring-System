@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>KingPay Lending System</title>
+    <style>
+      /* Add these styles to your existing CSS */
+      .payment-history-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.5);
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
+      }
+      
+      .payment-history-content {
+        background-color: white;
+        padding: 30px;
+        border-radius: 8px;
+        width: 90%;
+        max-width: 800px;
+        max-height: 80vh;
+        overflow-y: auto;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      }
+      
+      .payment-history-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #e0e0e0;
+      }
+      
+      .payment-history-title {
+        font-size: 24px;
+        color: #1a237e;
+      }
+      
+      .payment-history-close {
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        color: #777;
+      }
+      
+      .payment-history-table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      
+      .payment-history-table th, 
+      .payment-history-table td {
+        padding: 12px 15px;
+        text-align: left;
+        border-bottom: 1px solid #e0e0e0;
+      }
+      
+      .payment-history-table th {
+        background-color: #f5f5f5;
+        font-weight: bold;
+        color: #1a237e;
+      }
+      
+      .payment-history-table tr:hover {
+        background-color: #f9f9f9;
+      }
+      
+      .status-paid {
+        color: #4caf50;
+        font-weight: bold;
+      }
+      
+      .view-payment-btn {
+        background-color: #1a237e;
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-top: 10px;
+        transition: background-color 0.3s;
+      }
+      
+      .view-payment-btn:hover {
+        background-color: #303f9f;
+      }
+      
+      .paid-customer-card {
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+        background-color: #f9f9f9;
+      }
+      
+      .paid-customer-name {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 15px;
+        color: #1a237e;
+      }
+      
+      .paid-customer-details {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 15px;
+        margin-bottom: 15px;
+      }
+      
+      .paid-detail-item {
+        margin-bottom: 10px;
+      }
+      
+      .paid-detail-label {
+        font-weight: bold;
+        color: #555;
+      }
+      
+      .paid-detail-value {
+        color: #333;
+      }
+    </style>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="icon" href="data:,"> <!-- Prevent favicon 404 -->
+
+    <!-- Orbitron Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+
+    <!-- 🔐 Login Section -->
+    <div id="loginSection" class="section">
+      <div class="login-container">
+        <div class="login-logo">
+          <img src="../Logo/Kingpay.png" alt="KingPay Logo" class="login-icon">
+          <h2>Owner Login</h2>
+        </div>
+        <form id="loginForm">
+          <input type="text" id="username" placeholder="Username" required>
+          <input type="password" id="ownerPassword" placeholder="Password" required>
+          <button type="submit">Login</button>
+        </form>
+        <p id="loginError"></p>
+      </div>
+    </div>
+
+    <!-- 📊 Dashboard Section -->
+    <div id="dashboardWrapper">
+      <div class="dashboard">
+        <aside class="sidebar">
+          <div class="logo-container">
+            <img src="../Logo/Kingpay.png" alt="KingPay Logo" class="logo-icon">
+            <h2 class="brand-title">KingPay</h2>
+          </div>
+          <button onclick="goHome()">🏠 Home</button>
+          <button onclick="showActiveLoans()">✅ Active Loans</button>
+          <button onclick="toggleAddCustomer()">➕ Add Loan</button>
+          <button onclick="showFullHistory()">📜 View Full History</button>
+          <button onclick="document.getElementById('logoutConfirm').style.display='block'">🔒 Logout</button>
+        </aside>
+
+        <main class="main-content">
+          <h1>👑 KingPay Lending System</h1>
+
+          <!-- 📊 EXPORT SECTION -->
+          <div class="export-section">
+            <h3>📊 Export Reports (CSV for Excel)</h3>
+            <p>Download CSV files that open directly in Microsoft Excel</p>
+            
+            <button onclick="exportToCSV()" class="export-btn">
+              📈 Export All Data (CSV)
+            </button>
+            
+            <button onclick="exportActiveLoansToCSV()" class="export-btn active-loans">
+              ✅ Active Loans Only (CSV)
+            </button>
+            
+            <button onclick="exportSummaryToCSV()" class="export-btn summary">
+              📊 Summary Report (CSV)
+            </button>
+            
+            <button onclick="exportCustomerData()" class="export-btn json">
+              📁 JSON Backup
+            </button>
+          </div>
+
+          <div id="dashboardSummary" class="section">
+            <h2>Dashboard Overview</h2>
+            <ul>
+              <li>Total Active Loans: <span id="totalActive">0</span></li>
+              <li>Total Loans: <span id="totalLoans">0</span></li>
+              <li>Total Balance Owed: ₱<span id="totalBalance">0.00</span></li>
+              <li>Penalties Applied This Month: <span id="totalPenalties">0</span></li>
+              <li>Fully Paid Loans: <span id="totalPaid">0</span></li>
+              <li>Total Interest Earned: ₱<span id="totalInterest">0.00</span></li>
+            </ul>
+
+            <!-- 📊 Loan Status Chart -->
+            <div class="chart-container">
+              <canvas id="loanStatusChart"></canvas>
+            </div>
+
+            <!-- 👥 Customer List -->
+            <div id="dashboardCustomerList"></div>
+          </div>
+
+          <!-- Other Sections -->
+          <div id="mainView" class="section"></div>
+
+          <div id="addCustomerSection" class="section">
+            <h2>Add New Customer</h2>
+            <p><em>Maximum loan amount is ₱15,000. Interest is 10%. ₱100 penalty applies for missed monthly dues.</em></p>
+            <form id="loanForm">
+              <input type="text" placeholder="Name" id="name" required>
+              <input type="number" placeholder="Loan Amount" id="loanAmount" required>
+              <input type="date" id="startDate" required>
+              <input type="number" placeholder="Monthly Due Date (e.g. 10)" id="monthlyDueDate" min="1" max="31" required>
+              <input type="number" placeholder="Months to Pay (e.g. 6, 12, 24)" id="monthsToPay" min="1" required>
+              <button type="submit">Add Customer</button>
+            </form>
+          </div>
+
+          <div id="historySection" class="section">
+            <h2>Paid Customers</h2>
+            <div id="historyList"></div>
+          </div>
+
+          <!-- 🧾 Checkout Display (Optional) -->
+          <div id="checkoutDisplay" class="section">
+            <h2>Customer Checkout</h2>
+            <p><strong>Name:</strong> <span id="customerNameText"></span></p>
+            <p><strong>ID:</strong> <span id="customerIdText"></span></p>
+            <p><strong>Amount Due:</strong> <span id="customerPaymentText"></span></p>
+            <button id="confirmButton">Confirm Payment</button>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <!-- 💳 Payment Modal -->
+    <div id="paymentModal" class="modal">
+      <div class="modal-content">
+        <h3 id="modalTitle">Enter Payment Amount</h3>
+        <div id="monthlyDueLabel"></div>
+        <input type="number" id="paymentInput" placeholder="Enter amount">
+        <button id="confirmPayment">Confirm</button>
+        <button id="cancelPayment" onclick="closePaymentModal()">Cancel</button>
+      </div>
+    </div>
+
+    <!-- 🔒 Logout Confirmation Modal -->
+    <div id="logoutConfirm" class="logout-container">
+      <div class="logout-box">
+        <h3>Are you sure you want to logout?</h3>
+        <button onclick="logout()">Logout</button>
+        <button onclick="document.getElementById('logoutConfirm').style.display='none'">Cancel</button>
+      </div>
+    </div>
+
+    <!-- 📜 Payment History Modal -->
+    <div id="paymentHistoryModal" class="payment-history-modal">
+      <div class="payment-history-content">
+        <div class="payment-history-header">
+          <h2 class="payment-history-title">Payment History - <span id="paymentHistoryCustomerName"></span></h2>
+          <button class="payment-history-close">&times;</button>
+        </div>
+        <table class="payment-history-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Amount</th>
+              <th>Payment Method</th>
+              <th>Status</th>
+              <th>Reference</th>
+            </tr>
+          </thead>
+          <tbody id="paymentHistoryTableBody">
+            <!-- Payment history rows will be inserted here -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ✅ Load script after DOM -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        getEl("loanForm").addEventListener("submit", handleAddCustomer);
+        getEl("loginForm").addEventListener("submit", handleLogin);
+      });
+    </script>
+    <script src="script.js"></script>
+  </body>
+</html>

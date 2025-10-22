@@ -1,0 +1,590 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+/* ============================= */
+/* 🌿 Base Styles                */
+/* ============================= */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Orbitron', sans-serif;
+  background-color: #026b02;
+  min-height: 100vh;
+}
+
+.dashboard {
+  display: flex;
+  height: 100vh;
+}
+
+/* ============================= */
+/* 👑 KingPay Sidebar Branding   */
+/* ============================= */
+.sidebar {
+  width: 220px;
+  background-color: #014001;
+  color: white;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.login-logo img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+.logo-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: contain;
+}
+
+.brand-title {
+  font-size: 22px;
+  font-weight: bold;
+  color: white;
+  letter-spacing: 1px;
+}
+
+.sidebar button {
+  display: block;
+  width: 100%;
+  background-color: #228B22;
+  color: white;
+  border: none;
+  padding: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: 'Orbitron', sans-serif;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.sidebar button:hover {
+  background-color: #006400;
+}
+
+/* ============================= */
+/* 📊 Export Section Styles      */
+/* ============================= */
+.export-section {
+  margin: 20px;
+  padding: 15px;
+  border: 1px solid #4CAF50;
+  border-radius: 8px;
+  background: #f9f9f9;
+}
+
+.export-section h3 {
+  margin-top: 0;
+  color: #217346;
+}
+
+.export-btn {
+  background: #217346;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin: 5px;
+  font-size: 14px;
+  font-family: 'Orbitron', sans-serif;
+  transition: background-color 0.3s;
+}
+
+.export-btn:hover {
+  background-color: #1a5c38;
+}
+
+.export-btn.active-loans {
+  background: #228B22;
+}
+
+.export-btn.active-loans:hover {
+  background: #1a7a1a;
+}
+
+.export-btn.summary {
+  background: #FF6B00;
+}
+
+.export-btn.summary:hover {
+  background: #e05a00;
+}
+
+.export-btn.json {
+  background: #666;
+}
+
+.export-btn.json:hover {
+  background: #555;
+}
+
+/* ============================= */
+/* 🔔 Backup Reminder            */
+/* ============================= */
+.backup-reminder {
+  background-color: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeeba;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.backup-reminder button {
+  background-color: #228B22;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 4px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.backup-reminder button:hover {
+  background-color: #006400;
+}
+
+/* ============================= */
+/* 📄 Main Content               */
+/* ============================= */
+.main-content {
+  flex-grow: 1;
+  padding: 30px;
+  background-color: #90e4c1;
+  overflow-y: auto;
+}
+
+h1, h2 {
+  color: #000000;
+}
+
+/* ============================= */
+/* 👥 Customer & Log Entries     */
+/* ============================= */
+.customer, .logEntry {
+  border-bottom: 1px solid #999999;
+  padding: 10px 0;
+  background-color: #f9f9f9;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+.customer.paid {
+  background-color: #e0ffe0;
+  border-left: 5px solid #228B22;
+}
+
+.customer.active {
+  background-color: #fff8dc;
+  border-left: 5px solid #ffa500;
+}
+
+.customer.ontrack {
+  background-color: #e0ffe0;
+  border-left: 5px solid #228B22;
+}
+
+.customer.overdue {
+  background-color: #ffe5e5;
+  border-left: 5px solid red;
+  box-shadow: 0 0 5px rgba(255, 0, 0, 0.3);
+}
+
+/* ============================= */
+/* 🧾 Forms & Inputs              */
+/* ============================= */
+input, button {
+  margin: 5px 5px 5px 0;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+input {
+  width: 100%;
+  background-color: #f9f9f9;
+  color: #000000;
+}
+
+button[type="submit"] {
+  background-color: #006400;
+  color: white;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #014001;
+}
+
+/* ============================= */
+/* 💳 Modal Styles               */
+/* ============================= */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  transition: opacity 0.3s ease;
+}
+
+.modal-content {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+.modal-content input {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.modal-content button {
+  width: 48%;
+  margin: 5px 1%;
+}
+
+/* ============================= */
+/* 📜 Payment History Modal      */
+/* ============================= */
+.payment-history-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+.payment-history-content {
+  background-color: white;
+  padding: 30px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 800px;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.payment-history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.payment-history-title {
+  font-size: 24px;
+  color: #1a237e;
+}
+
+.payment-history-close {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #777;
+}
+
+.payment-history-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.payment-history-table th, 
+.payment-history-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.payment-history-table th {
+  background-color: #f5f5f5;
+  font-weight: bold;
+  color: #1a237e;
+}
+
+.payment-history-table tr:hover {
+  background-color: #f9f9f9;
+}
+
+.status-paid {
+  color: #4caf50;
+  font-weight: bold;
+}
+
+/* ============================= */
+/* 👑 Paid Customer Cards        */
+/* ============================= */
+.paid-customer-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  background-color: #f9f9f9;
+}
+
+.paid-customer-name {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #1a237e;
+}
+
+.paid-customer-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.paid-detail-item {
+  margin-bottom: 10px;
+}
+
+.paid-detail-label {
+  font-weight: bold;
+  color: #555;
+}
+
+.paid-detail-value {
+  color: #333;
+}
+
+.view-payment-btn {
+  background-color: #1a237e;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.view-payment-btn:hover {
+  background-color: #303f9f;
+}
+
+/* ============================= */
+/* 📁 Section Visibility         */
+/* ============================= */
+.section {
+  display: none;
+}
+
+.section.active {
+  display: block;
+}
+
+/* ============================= */
+/* 🔐 Login Section              */
+/* ============================= */
+#loginSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 20px;
+  background-color: #026b02;
+}
+
+.login-container {
+  background-color: #90e4c1;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  width: 300px;
+  text-align: center;
+  margin: auto;
+}
+
+.login-container h2 {
+  margin-bottom: 20px;
+  color: #014001;
+}
+
+.login-container input {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.login-container button {
+  width: 100%;
+  background-color: #228B22;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.login-container button:hover {
+  background-color: #006400;
+}
+
+/* ============================= */
+/* 📊 Dashboard Chart Styles     */
+/* ============================= */
+#loanStatusChart {
+  display: block;
+  width: 100%;
+  max-width: 600px;
+  height: 300px;
+  margin: 30px auto;
+}
+
+#dashboardSummary canvas {
+  margin-top: 20px;
+}
+
+.chart-container {
+  max-width: 600px;
+  height: 300px;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ============================= */
+/* 🧾 Checkout Display Section   */
+/* ============================= */
+#checkoutDisplay {
+  background-color: #f0fff0;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 30px;
+}
+
+#checkoutDisplay p {
+  margin: 10px 0;
+  font-size: 16px;
+}
+
+#confirmButton {
+  background-color: #006400;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+#confirmButton:hover {
+  background-color: #014001;
+}
+
+/* ============================= */
+/* 🔒 Logout Confirmation        */
+/* ============================= */
+.logout-container {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  z-index: 999;
+  text-align: center;
+}
+
+.logout-box {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  text-align: center;
+  width: 300px;
+}
+
+.logout-box h3 {
+  margin-bottom: 20px;
+  font-size: 18px;
+  color: #014001;
+}
+
+.logout-box button {
+  margin: 5px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  background-color: #228B22;
+  color: white;
+}
+
+.logout-box button:hover {
+  background-color: #006400;
+}
+
+/* ============================= */
+/* 🖨️ Print Styles               */
+/* ============================= */
+@media print {
+  body {
+    background-color: white;
+    color: black;
+    font-size: 12pt;
+  }
+
+  .sidebar, #loginSection, .modal {
+    display: none !important;
+  }
+
+  .main-content {
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+  }
+
+  .customer {
+    page-break-inside: avoid;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  h1, h2 {
+    color: black;
+  }
+}
