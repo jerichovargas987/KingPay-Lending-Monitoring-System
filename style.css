@@ -16,9 +16,8 @@ body {
   height: 100vh;
 }
 
-/* ============================= */
-/* 👑 KingPay Sidebar Branding   */
-/* ============================= */
+
+
 .sidebar {
   width: 220px;
   background-color: #014001;
@@ -28,6 +27,16 @@ body {
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+
+/* Login form            */
+
+#loginForm{
+  display: block;
+  justify-content: center;
+  align-items: center;
+  padding-right: 10px;
 }
 
 .logo-container {
@@ -73,9 +82,9 @@ body {
   background-color: #006400;
 }
 
-/* ============================= */
-/* 📊 Export Section Styles      */
-/* ============================= */
+
+/* Export Section Styles      */
+
 .export-section {
   margin: 20px;
   padding: 15px;
@@ -130,9 +139,9 @@ body {
   background: #555;
 }
 
-/* ============================= */
-/* 🔔 Backup Reminder            */
-/* ============================= */
+
+/* Backup Reminder            */
+
 .backup-reminder {
   background-color: #fff3cd;
   color: #856404;
@@ -157,9 +166,9 @@ body {
   background-color: #006400;
 }
 
-/* ============================= */
-/* 📄 Main Content               */
-/* ============================= */
+
+/* Main Content               */
+
 .main-content {
   flex-grow: 1;
   padding: 30px;
@@ -171,9 +180,8 @@ h1, h2 {
   color: #000000;
 }
 
-/* ============================= */
-/* 👥 Customer & Log Entries     */
-/* ============================= */
+/* Customer & Log Entries     */
+
 .customer, .logEntry {
   border-bottom: 1px solid #999999;
   padding: 10px 0;
@@ -203,9 +211,9 @@ h1, h2 {
   box-shadow: 0 0 5px rgba(255, 0, 0, 0.3);
 }
 
-/* ============================= */
-/* 🧾 Forms & Inputs              */
-/* ============================= */
+
+/* Forms & Inputs              */
+
 input, button {
   margin: 5px 5px 5px 0;
   padding: 8px;
@@ -214,9 +222,10 @@ input, button {
 }
 
 input {
-  width: 100%;
+  width: 90%;
   background-color: #f9f9f9;
   color: #000000;
+  
 }
 
 button[type="submit"] {
@@ -229,9 +238,9 @@ button[type="submit"]:hover {
   background-color: #014001;
 }
 
-/* ============================= */
-/* 💳 Modal Styles               */
-/* ============================= */
+
+/* Modal Styles               */
+
 .modal {
   position: fixed;
   top: 0;
@@ -268,9 +277,9 @@ button[type="submit"]:hover {
   margin: 5px 1%;
 }
 
-/* ============================= */
-/* 📜 Payment History Modal      */
-/* ============================= */
+
+/* Payment History Modal      */
+
 .payment-history-modal {
   display: none;
   position: fixed;
@@ -344,9 +353,9 @@ button[type="submit"]:hover {
   font-weight: bold;
 }
 
-/* ============================= */
+
 /* 👑 Paid Customer Cards        */
-/* ============================= */
+
 .paid-customer-card {
   border: 1px solid #e0e0e0;
   border-radius: 8px;
@@ -398,20 +407,20 @@ button[type="submit"]:hover {
   background-color: #303f9f;
 }
 
-/* ============================= */
-/* 📁 Section Visibility         */
-/* ============================= */
+
+/* Section Visibility         */
+
 .section {
-  display: none;
+  display: flex;
 }
 
 .section.active {
   display: block;
 }
 
-/* ============================= */
-/* 🔐 Login Section              */
-/* ============================= */
+
+/* Login Section              */
+
 #loginSection {
   display: flex;
   justify-content: center;
@@ -441,6 +450,7 @@ button[type="submit"]:hover {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 6px;
+  
 }
 
 .login-container button {
@@ -457,9 +467,9 @@ button[type="submit"]:hover {
   background-color: #006400;
 }
 
-/* ============================= */
-/* 📊 Dashboard Chart Styles     */
-/* ============================= */
+
+/* Dashboard Chart Styles     */
+
 #loanStatusChart {
   display: block;
   width: 100%;
@@ -480,9 +490,9 @@ button[type="submit"]:hover {
   position: relative;
 }
 
-/* ============================= */
-/* 🧾 Checkout Display Section   */
-/* ============================= */
+
+/* Checkout Display Section   */
+
 #checkoutDisplay {
   background-color: #f0fff0;
   border: 1px solid #ccc;
@@ -510,9 +520,9 @@ button[type="submit"]:hover {
   background-color: #014001;
 }
 
-/* ============================= */
-/* 🔒 Logout Confirmation        */
-/* ============================= */
+
+/* Logout Confirmation        */
+
 .logout-container {
   display: none;
   position: fixed;
@@ -557,9 +567,9 @@ button[type="submit"]:hover {
   background-color: #006400;
 }
 
-/* ============================= */
+
 /* 🖨️ Print Styles               */
-/* ============================= */
+
 @media print {
   body {
     background-color: white;
