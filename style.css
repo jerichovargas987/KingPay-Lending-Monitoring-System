@@ -1,8 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 
-/* ============================= */
-/* 🌿 Base Styles                */
-/* ============================= */
+
+/*  Base Styles                */
+
+*{
+ user-select: none;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -598,3 +602,4 @@ button[type="submit"]:hover {
     color: black;
   }
 }
+
