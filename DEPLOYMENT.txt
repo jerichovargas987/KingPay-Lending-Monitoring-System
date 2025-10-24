@@ -1,7 +1,3 @@
 DEPLOYMENT 
 
 https://king-pay-lending-monitoring-system.vercel.app/
-
-DOMAIN
-
-https://king-pay-lending-monitoring-system.vercel.app/
